@@ -17,7 +17,10 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Install MAUI workload
-        run: dotnet workload install maui-android
+        run: dotnet workload install maui --ignore-failed-sources
+
+      - name: Restore
+        run: dotnet restore MusicPlayerApp/MusicPlayerApp.csproj -f net8.0-android
 
       - name: Build APK
         run: dotnet build MusicPlayerApp/MusicPlayerApp.csproj -f net8.0-android -c Release
